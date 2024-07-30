@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <!--准备好一个容器-->
+    <div id="root">
+        <h1>学校名称： {{name}}</h1>
+        <h1>学校地址：{{address}}</h1>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        //创建vue实例
+        new Vue({
+            el: '#root', //el用于指定当前vue实例为哪个容器服务，值通常为css选择器字符串
+            data: {//data中用于存储数据，数据供el所制定的容器去使用，值我们暂时先写成一个对象。
+                name: '尚硅谷',
+                address: '东京'
+            }
+        })
+
+    </script>
+</body>
+</html>

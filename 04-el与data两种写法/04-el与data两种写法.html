@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!--准备好一个容器-->
+    <div id="root">
+        <h1>你好，{{name}}</h1>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        // const v = new Vue({
+        //     // el: '#root',
+        //     data: {
+        //         name: 'zhangsan'
+        //     }
+        // })
+        // console.log(v);
+        // v.$mount('#root')
+
+        new Vue({
+            el: '#root',
+            // 第一种写法
+            /*             data: {
+                            name: 'zhangsan'
+                        } */
+
+            //data的第二种写法：函数式
+/*             data: function () {
+                console.log('@@@',this);
+                return {
+                    name: 'zhangsan'
+                }
+            } */
+
+            data() {
+                console.log('@@@',this);
+                return {
+                    name: 'zhangsan'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
