@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>学生信息</h1>
+        <button @click="student.age++">年龄+1岁</button>
+        <button @click="addSex">添加性别属性，默认值：男</button>
+        <button @click="addFriend">在列表首位添加一个朋友</button>
+        <button @click="updateFirstF">修改第一个朋友的名字为：李四</button>
+        <button @click="addHobby">添加一个爱好</button>
+        <button @click="updateFirstHobby">修改第一个爱好为：开车</button>
+
+        <h2>姓名：{{student.name}}</h2>
+        <h2 v-if="student.sex">性别：{{student.sex}}</h2>
+        <h2>年龄：{{student.age}}</h2>
+        <h2>爱好：</h2>
+        <ul>
+            <li v-for="(h,index) in student.hobby" :key="index">{{h}}</li>
+        </ul>
+        <h2>朋友们：</h2>
+        <ul>
+            <li v-for="(f,index) in student.friends" :key="index">{{f.name}}-{{f.age}}</li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷',
+                address: '北京',
+                student:
+                {
+                    name: 'zhangsan',
+                    age: 18,
+                    hobby: [
+                        '唱', '跳', '打篮球'
+                    ],
+                    friends: [
+                        { name: 'jerry', age: 10 },
+                        { name: 'mike', age: 30 }
+                    ]
+                },
+            },
+            methods: {
+                addSex() {
+                    // Vue.set(this.student,"sex",'男')
+                    this.$set(this.student, "sex", '男')
+                },
+                addFriend() {
+                    this.student.friends.unshift({ name: 'Tom', age: 11 })
+                },
+                updateFirstF() {
+                    this.student.friends[0].name = '李四'
+                },
+                addHobby(){
+                    this.student.hobby.push('Rap')
+                },
+                updateFirstHobby(){
+                    // this.student.hobby.splice(0,1,'开车')
+                    this.$set(this.student.hobby,0,'开车')
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
