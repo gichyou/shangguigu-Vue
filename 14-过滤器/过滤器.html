@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../dayjs.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>显示格式化后的时间戳</h2>
+        <!-- 计算属性实现 -->
+        <h3>现在是：{{fmtTime}}</h3>
+        <!-- methods实现 -->
+        <h3>现在是：{{getFmtTime()}}</h3>
+        <!-- 过滤器实现 -->
+        <h3>现在是：{{time | timeFormater}}</h3>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                time: '',
+            },
+            computed: {
+                fmtTime() {
+                    let d = new Date();
+                    return this.time = dayjs(d.getTime()).format('YYYY年MM月DD日 HH:mm:ss')
+                }
+            },
+            methods: {
+                getFmtTime() {
+                    let d = new Date();
+                    return this.time = dayjs(d.getTime()).format('YYYY年MM月DD日 HH:mm:ss')
+                }
+            },
+            filters:{
+                timeFormater(value){
+                    console.log('@',value);
+                    return dayjs(value).format('YYYY年MM月DD日 HH:mm:ss')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
