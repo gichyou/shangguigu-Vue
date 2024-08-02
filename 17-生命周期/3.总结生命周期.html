@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">欢迎学习Vue</h2>
+        <button @click="opacity = 1">透明度设置为1</button>
+        <button @click="stop">点我停止变换</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                opacity: 1,
+                a: false
+            },
+            methods: {
+                stop() {
+                    this.$destroy()
+                }
+            },
+            mounted() {
+                console.log('mounted');
+                this.timer = setInterval(() => {
+                    console.log('setInterval');
+                    this.opacity -= 0.01
+                    if (this.opacity <= 0) {
+                        this.opacity = 1
+                    }
+                }, 16);
+            },
+            beforeDestroy() {
+                console.log('vm即将驾鹤西游');
+                clearInterval(this.timer)
+            },
+        })
+    </script>
+</body>
+
+</html>

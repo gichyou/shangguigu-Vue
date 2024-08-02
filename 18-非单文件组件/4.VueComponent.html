@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+        <hello></hello>
+    </div>
+    <script>
+        const school = Vue.extend({
+            name: 'school',
+            template: `
+            <div>
+                <h2>学校名称：{{name}}</h2>
+                <h2>学校地址：{{address}}</h2>
+                <button @click="showName">点我显示学校名</button>
+            </div>
+            `,
+            data() {
+                return {
+                    name: '尚硅谷',
+                    address: '北京'
+                }
+            },
+            methods: {
+                showName(){
+                    // alert(this.name)
+                    console.log(this);
+                }
+            },
+        })
+
+        const hello = Vue.extend({
+            template:`<h1>{{msg}}</h1>`,
+            data(){
+                return{
+                    msg: 'hello'
+                }
+            }
+        })
+
+        console.log('@', school === hello);
+        console.log('#', hello);
+
+        const vm = new Vue({
+            el: '#root',
+            components: {
+                school,
+                hello
+            }
+        })
+    </script>
+</body>
+
+</html>
