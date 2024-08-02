@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+    <script>
+        Vue.prototype.x = 99
+
+        const school = Vue.extend({
+            name: 'school',
+            template: `
+            <div>
+                <h2>学校名称：{{name}}</h2>
+                <h2>学校地址：{{address}}</h2>
+            </div>
+            `,
+            data() {
+                return {
+                    name: '尚硅谷',
+                    address: '北京'
+                }
+            },
+        })
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                msg: '你好'
+            },
+            components:{
+                school
+            }
+        })
+
+        console.log(school.prototype.__proto__ === Vue.prototype);
+/*         function Demo() {
+            this.a = 1
+            this.b = 2
+        }
+
+        const d = new Demo()
+
+        console.log(Demo.prototype);
+        console.log(d.__proto__);
+
+        //程序员
+        Demo.prototype.x = 99
+
+        console.log('@',d.x); */
+    </script>
+</body>
+
+</html>
